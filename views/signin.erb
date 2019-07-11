@@ -3,7 +3,6 @@
   body {
     height: 100%;
   }
-
   body {
     font-family: 'Fira Sans', sans-serif;
     display: -ms-flexbox;
@@ -14,26 +13,19 @@
     padding-bottom: 40px;
     background-image: url('images/warrior.jpg');
   }
-
   .form-signin {
     width: 100%;
     max-width: 330px;
     padding: 15px;
     margin: auto;
+    padding-top: 15%;
   }
-
-  .te{
-    font-color: #fff;
-  }
-
   .btn{
     background-color: #00CEE5;
   }
-
   .form-signin .checkbox {
     font-weight: 400;
   }
-
   .form-signin .form-control {
     position: relative;
     box-sizing: border-box;
@@ -54,39 +46,44 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
   @media (min-width: 768px) {
     .bd-placeholder-img-lg {
       font-size: 3.5rem;
     }
   }
 </style>
-<!-- Custom styles for this template -->
-<!-- <link href="signin.css" rel="stylesheet"> -->
-</head>
+
 <body class="text-center">
-<form class="form-signin">
-<h1 class="h3 mb-3 font-weight-normal">Please sign in or sign up</h1>
-<label for="inputEmail" class="sr-only">Email address</label>
-<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-<label for="inputPassword" class="sr-only">Password</label>
-<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-<div class="checkbox mb-3">
-<label>
-  <input type="checkbox" value="remember-me" class="te">Remember me</input>
-</label>
-</div>
-<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-<p class="mt-5 mb-3 text-muted">&copy; 2019</p>
-</form>
+  <form class="form-signin">
+    <h1 id="signin-title">WARRIOR'S BLOG SPOT</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="checkbox mb-3">
+      <label class="te">
+        <input type="checkbox" value="remember-me">Remember me</input>
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <h5 class="mb-3 font-weight-normal">don't have an account?</h5>
+    <a href="/signup"><button type="button" class="btn btn-lg btn-primary btn-block">Sign up</button></a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+  </form>
 </body>
+
+<!-- <div class="container text-center">
+  <form class="form-signin" method="post" action="/login">
+    <img class="mb-4" src="http://via.placeholder.com/150x150" alt="Inspired Logo">
+    <h3 class="mb-3 font-weight-normal">please log in</h3>
+    <label for="inputEmail" class="sr-only">email address</label>
+    <input name="email" type="email" id="inputEmail" class="form-control col-md-6 offset-md-3 mb-4" placeholder="email address" required autofocus>
+    <label for="inputPassword" class="sr-only">password</label>
+    <input name="password" type="password" id="inputPassword" class="form-control col-md-6 offset-md-3 mb-4" placeholder="password" required>
+    <button class="btn btn-md btn-light mb-5" type="submit">log in</button>
+    <h5 class="mb-3 font-weight-normal">don't have an account?</h5>
+  </form>
+  <a href="/signup"><button class="btn btn-md btn-light mb-5">sign up</button></a>
+  <a href="/users/1"><button class="btn btn-md btn-light mb-5">demo</button></a>
+  <p class="mt-5 mb-3">&copy; 2018 inspire(d)</p>
+</div> -->

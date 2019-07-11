@@ -14,6 +14,6 @@ get '/' do
   erb :signin
 end
 
-get '/' do
+get '/signup' do
   erb :signup
 end
