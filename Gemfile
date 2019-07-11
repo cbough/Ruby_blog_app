@@ -1,6 +1,12 @@
-source "https://rubygems.org"
 
-gem "sinatra"
-gem "sinatra-activerecord"
-gem "sqlite3"
-gem "rake"
+
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'pg'
+gem 'rake'
+gem 'shotgun'
+gem 'faker'
+gem 'pry'
+gem 'will_paginate'
