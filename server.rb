@@ -6,9 +6,23 @@ require 'will_paginate/active_record'
 
 require_relative './models/user'
 require_relative './models/post'
+require_relative './models/tag'
+require_relative './models/tagging'
 
-# comment out for heroku deployment
-set :database, {adapter: 'postgresql', database: 'rumblr'}
+#
+# #LOCAL
+# ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: './database.sqlite3')
+# set :database, {adapter: "sqlite3", database: "./database.sqlite3"}
+#
+# #HEROKU
+# # require "active_record"
+# # ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
+
+if ENV['RACK_ENV']
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+else
+  set :database, {adapter: "sqlite3", database: "database.sqlite3"}
+end
 
 configure do
   enable :sessions unless test?
@@ -36,7 +50,6 @@ post '/signin' do
     set_as_current_user
     redirect '/'
   else
-    # TODO: display error message instead of redirecting/refreshing form
     redirect '/signin'
   end
 end
@@ -64,6 +77,19 @@ end
 post '/posts/new' do
   @user = current_user
   post = Post.create(quote: params[:quote], author: params[:author], user_id: @user.id)
+  tags = params[:tags]
+  tags.split(' ').each do |tag|
+    tag_in_db = Tag.find_by(content: tag)
+    if tag_in_db.nil?
+      new_tag = Tag.create(content: tag)
+      tag_id = new_tag.id
+    else
+      tag_id = tag_in_db.id
+    end
+    Tagging.create(post_id: post.id, tag_id: tag_id)
+  end
+  # after posting, redirect to own blog :)
+  redirect "/users/#{@user.id}"
 end
 
 get '/users/:id' do
@@ -98,23 +124,6 @@ put '/posts/:id' do
   @user = current_user
   @post = Post.find(params[:id])
   @post.update(quote: params[:quote], author: params[:author])
-  # TODO: fix ability to update tags
-  # tags = params[:tags]
-  # tags.split(' ').each do |tag|
-  #   # determine if tag already exists
-  #   tag_in_db = Tag.find_by(content: tag)
-  #   if Tagging.find_by(post_id: @post.id, tag_id: tag_in_db.id)
-  #     Tagging.update(content: tag)
-  #   else
-  #     if tag_in_db.nil?
-  #       new_tag = Tag.create(content: tag)
-  #       tag_id = new_tag.id
-  #     else
-  #       tag_id = tag_in_db.id
-  #     end
-  #     Tagging.create(post_id: @post.id, tag_id: tag_id)
-  #   end
-  # end
   redirect "/users/#{@user.id}"
 end
 

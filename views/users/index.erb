@@ -1,13 +1,13 @@
 <% if !@posts.empty? %>
   <div class="container">
     <% if @blog_owner && @user != @blog_owner %>
-      <h4 class="text-center blog-username">@<%= @blog_owner.username %></h4>
+      <h4 class="text-center blog-username">@</h4>
     <% end %>
     <% @posts.each do |post| %>
       <div class="card my-4 col-lg-8 offset-lg-2">
         <div class="card-body">
           <small class="float-right"><%= post.updated_at.strftime('%b %d, %Y') %></small>
-          <div class="mb-3"><small><a href="/users/<%= post.user.id %>"><%= post.user.username %></a></small></div>
+          <div class="mb-3"><small><a href="/users/<%= post.user.id %>"></a></small></div>
           <blockquote class="blockquote mb-0">
             <p><%= post.quote %></p>
             <footer class="blockquote-footer"><%= post.author %></footer>
@@ -43,7 +43,7 @@
       <p>you haven't published anything yet.</p>
       <p>click <a href="/posts/new">post</a> in the navigation bar to start sharing and inspire others!</p>
     <% else %>
-      <p><%= @blog_owner.username %> hasn't shared anything yet.</p>
+      <p>hasn't shared anything yet.</p>
     <% end %>
   </div>
 <% end %>
